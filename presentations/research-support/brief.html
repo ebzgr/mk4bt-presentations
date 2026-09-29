@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Marketing for Betterment and Shield of Eden — Brief</title>
+    <style>
+      @page {
+        size: A4;
+        margin: 20mm 22mm;
+      }
+
+      :root {
+        --ink: #16181a;
+        --ink-muted: #5b6166;
+        --accent: #2e6b4f;
+        --border: #e3e1db;
+        --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+        --sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 10.5pt;
+        line-height: 1.55;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1.2rem;
+        border-bottom: 2px solid var(--accent);
+      }
+
+      header img {
+        height: 16mm;
+      }
+
+      .kicker {
+        margin: 0 0 0.3rem;
+        font-size: 7.5pt;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      h1,
+      h2 {
+        font-family: var(--serif);
+        font-weight: 600;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 21pt;
+        line-height: 1.15;
+      }
+
+      header .subtitle {
+        margin: 0.35rem 0 0;
+        color: var(--ink-muted);
+      }
+
+      h2 {
+        margin: 1.5rem 0 0.6rem;
+        font-size: 14pt;
+        color: var(--accent);
+      }
+
+      h3 {
+        margin: 0 0 0.2rem;
+        font-size: 10.5pt;
+      }
+
+      p {
+        margin: 0 0 0.75rem;
+      }
+
+      ul {
+        margin: 0 0 0.75rem;
+        padding-left: 1.2rem;
+      }
+
+      li + li {
+        margin-top: 0.3rem;
+      }
+
+      .quote {
+        margin: 0.4rem 0 1rem;
+        padding-left: 1rem;
+        border-left: 3px solid var(--accent);
+        font-family: var(--serif);
+        font-size: 12.5pt;
+        font-style: italic;
+      }
+
+      .items > div {
+        margin-bottom: 0.7rem;
+      }
+
+      .items p {
+        margin: 0;
+        color: var(--ink-muted);
+      }
+
+      .product-head {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+
+      .product-head img {
+        width: 13mm;
+        height: auto;
+      }
+
+      .product-head h2 {
+        margin: 0;
+      }
+
+      section.shield {
+        margin-top: 1.5rem;
+      }
+
+      section.shield > .product-head {
+        margin-bottom: 0.6rem;
+      }
+
+      section.shield > h3 {
+        margin-top: 1rem;
+      }
+
+      h2,
+      h3,
+      .product-head {
+        break-after: avoid;
+      }
+
+      .items > div,
+      .quote,
+      li {
+        break-inside: avoid;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <p class="kicker">An introduction</p>
+        <h1>Marketing for Betterment<br />and Shield of Eden</h1>
+        <p class="subtitle">A brief for the ESSEC Research Support team</p>
+      </div>
+      <img src="assets/essec-logo.png" alt="ESSEC Business School" />
+    </header>
+
+    <h2>The problem: an incomplete measure of success</h2>
+    <p>
+      Marketing has become systematic. Firms combine behavioural data, algorithmic targeting and continuous online
+      experimentation to optimise messages, prices and interface designs. These optimisations are evaluated almost
+      exclusively against commercial outcomes such as conversion, engagement and retention. Their consequences for
+      the people exposed to them are rarely measured, and therefore rarely enter decision-making.
+    </p>
+    <p>
+      Research and public debate point to consequences at three levels: <strong>individual</strong> (mental health,
+      self-perception, time and attention), <strong>societal</strong> (materialistic values, polarisation, erosion of
+      trust) and <strong>environmental</strong> (overconsumption, waste, emissions). Many of the techniques involved,
+      such as pre-selected defaults, countdown timers, scarcity cues, reference prices and asymmetric cancellation
+      flows, are effective precisely because they operate below conscious awareness.
+    </p>
+
+    <h2>A self-reinforcing equilibrium</h2>
+    <p>
+      We treat the persistence of these practices as a coordination problem rather than a failure of intent. Four
+      groups act reasonably under their own constraints, and each constraint sustains the others.
+    </p>
+    <div class="items">
+      <div>
+        <h3>Consumers</h3>
+        <p>
+          Because the techniques are low in salience, harm is rarely perceived and there is little demand for change.
+          Those who do notice have no means to respond, and tend to discount the effect.
+        </p>
+      </div>
+      <div>
+        <h3>Firms</h3>
+        <p>
+          Restraint carries a competitive cost. Without a shared standard or independent assessment, responsible
+          practice cannot be credibly signalled to customers.
+        </p>
+      </div>
+      <div>
+        <h3>Researchers</h3>
+        <p>
+          Behavioural data and experimentation infrastructure sit inside firms. Academic work relies largely on
+          surveys, laboratory studies and small samples, which are weakest where causal claims are most needed: in
+          real settings and over time.
+        </p>
+      </div>
+      <div>
+        <h3>Regulators</h3>
+        <p>
+          Without a causal evidence base, proportionate rules are difficult to draft and defend. Techniques vary by
+          degree rather than in kind, and their effects differ from one person to another.
+        </p>
+      </div>
+    </div>
+    <p>
+      An intervention at a single point is therefore absorbed by the others. Change requires several levers to move
+      together, supported by what none of the four groups can provide alone: independent instruments and independent
+      evidence.
+    </p>
+
+    <h2>Our approach</h2>
+    <p>Marketing for Betterment is a non-profit initiative based in Paris. Its vision:</p>
+    <p class="quote">"A world where marketing enriches lives, sustains the planet, and drives prosperity."</p>
+    <p>
+      Its mission is to steer marketing toward individual, societal and planetary well-being through three mutually
+      reinforcing pillars:
+    </p>
+    <div class="items">
+      <div>
+        <h3>Creating awareness</h3>
+        <p>
+          Recognition reduces the effectiveness of many persuasion techniques, and informed consumers create demand
+          for responsible practice. Awareness is paired with practical means to act, since awareness alone tends to
+          produce resignation.
+        </p>
+      </div>
+      <div>
+        <h3>Fostering scientific research</h3>
+        <p>
+          Shared infrastructure for randomised field experiments on live websites, with participant cohorts and
+          standardised protocols, so that independent teams can produce causal evidence without depending on a
+          commercial partner.
+        </p>
+      </div>
+      <div>
+        <h3>Developing tools, technologies and standards</h3>
+        <p>
+          Consumer-controlled tools and, over time, shared definitions, measurement methods and evidence-based
+          thresholds. These make independent assessment possible: the credible signal that responsible firms lack.
+        </p>
+      </div>
+    </div>
+    <p>
+      Our premise is not that marketing is harmful in itself, but that its evaluation is incomplete. Since most
+      techniques are quickly imitated and confer little lasting advantage, a credible standard would benefit most
+      firms too.
+    </p>
+
+    <section class="shield">
+      <div class="product-head">
+        <img src="assets/shield-of-eden.png" alt="" />
+        <h2>Shield of Eden: a field laboratory</h2>
+      </div>
+      <p>
+        Shield of Eden is a privacy-first Chrome extension connected to a server-side research platform. It works as a
+        field laboratory for studying digital persuasion in authentic environments, and as a personal tool that lets
+        users see and modify manipulative elements on the websites they already use.
+      </p>
+      <h3>For individuals</h3>
+      <p>
+        While users browse, Shield of Eden detects the marketing techniques it knows and explains how each one works.
+        Users then decide how to respond: they can be warned, or have the element removed or reshaped. Gamified
+        lessons in the Learning Center build the ability to recognise these techniques without the tool, and the
+        insights panel shows users their own usage behaviour, such as the time they spend on each website.
+        Participation also turns into real-world tree planting.
+      </p>
+      <p>
+        <strong>Our goal</strong> is to raise awareness and give individuals practical means to act. Because
+        recognition reduces the effectiveness of many persuasion techniques, better-informed users make these
+        techniques less effective and create demand for more responsible practice. The platform also brings the latest
+        research findings directly to the people they concern.
+      </p>
+
+      <h3>For research institutes</h3>
+      <p>
+        Shield of Eden gives researchers independent access to field experimentation, without the need for a
+        commercial partner. Teams can recruit invitation-based cohorts across universities and run randomised A/B
+        tests on live websites, several at once. They can combine passive behavioural data with short questionnaires
+        triggered by specific events, and follow metrics they define themselves over time. AI-assisted analysis and
+        reporting is in development.
+      </p>
+      <p>
+        <strong>Our goal</strong> is a platform that is open to all universities: a standard environment for causal
+        experiments in which hypotheses can be tested quickly and reliably. The evidence it produces can then inform
+        standards in marketing and the regulation of digital platforms. More broadly, we hope it moves marketing
+        research toward the field, where these effects actually occur.
+      </p>
+      <p>
+        <strong>Ethics and consent.</strong> Protection works without any data sharing. Data collection, experiments
+        and questionnaires are three independent opt-ins, off by default, and personal identifiers are removed before
+        storage. In a course, educational use and research participation are kept separate: contributing is a private
+        opt-in, invisible to the instructor and without effect on grades. All studies go through ethics review.
+      </p>
+    </section>
+
+    <h2>Status and collaboration with ESSEC</h2>
+    <p>
+      A working MVP has been built and is in invite-only testing, where it is being tuned based on user feedback. We
+      aim to run a first pilot with ESSEC students in winter 2027.
+    </p>
+    <p>
+      <strong>Next steps.</strong> Discuss the project with ESSEC and Metalab, obtain the necessary approvals,
+      including ethics review, and run the pilot with a sample of ESSEC students.
+    </p>
+    <p><strong>What we need.</strong></p>
+    <ul>
+      <li>Financial support, as our team is based in Iran.</li>
+      <li>
+        An institutional home at ESSEC, such as a lab or research centre, giving the project the formal standing
+        required for ethics review, data protection and funding applications.
+      </li>
+      <li>
+        Guidance on internal and external funding: for example ANR, CY projects, ESSEC internal calls, and other
+        options such as doctoral co-funding or European education partnerships.
+      </li>
+    </ul>
+    <p>We would welcome the opportunity to discuss how we can work together.</p>
+  </body>
+</html>

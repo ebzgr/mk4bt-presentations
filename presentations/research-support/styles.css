@@ -1,0 +1,810 @@
+/* Marketing for Betterment — research support briefing (light, minimalist) */
+
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --ink: #16181a;
+  --ink-muted: #5b6166;
+  --ink-faint: #8d9297;
+  --accent: #2e6b4f;
+  --accent-soft: #edf3ef;
+  --harm: #a8513a;
+  --border: #e3e1db;
+  --serif: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+  --radius: 0.6rem;
+  /* Content column as a share of the viewport, so it scales with the screen. */
+  --content: 80vw;
+  --gutter: max(1.25rem, calc((100vw - var(--content)) / 2));
+}
+
+/*
+ * Every size in the deck is in rem, and 1rem tracks the viewport:
+ * 16px at 1280×720, 20px at 1600×900, 24px at 1920×1080.
+ * The vh term keeps wide or short windows from overflowing vertically.
+ */
+html {
+  font-size: clamp(12px, min(1.25vw, 2.222vh), 40px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.45;
+  overflow: hidden;
+}
+
+/* ---------- Deck shell ---------- */
+
+.deck {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5.5rem var(--gutter) 5rem;
+  background: var(--bg);
+}
+
+.slide.active {
+  display: flex;
+}
+
+@media (max-width: 900px), (max-aspect-ratio: 1/1) {
+  .slide {
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+}
+
+/* Fixed top bar: initiative name + ESSEC logo (hidden on the title slide) */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem var(--gutter) 0;
+  pointer-events: none;
+}
+
+.topbar .initiative {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  font-weight: 600;
+}
+
+.topbar img {
+  height: 3.4rem;
+  width: auto;
+}
+
+.deck:has(.title-slide.active) ~ .topbar {
+  display: none;
+}
+
+/* ---------- Typography ---------- */
+
+.kicker {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 0.9rem;
+  font-weight: 600;
+}
+
+h1,
+h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 3.6rem;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  max-width: 26ch;
+}
+
+h2 {
+  font-size: 2.4rem;
+  line-height: 1.15;
+  margin: 0 0 1.4rem;
+  max-width: 40ch;
+}
+
+h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin: -0.75rem 0 1.25rem;
+  font-size: 1.15rem;
+  color: var(--ink-muted);
+}
+
+.takeaway {
+  margin: 1.6rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.source {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+.icon {
+  width: 3.25rem;
+  height: 3.25rem;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+/* ---------- Title slide ---------- */
+
+.title-slide .title-logo {
+  height: 6.5rem;
+  width: auto;
+  margin-bottom: 2.5rem;
+  align-self: flex-start;
+}
+
+.title-slide .footer-line {
+  margin-top: 2.5rem;
+  font-size: 0.92rem;
+  color: var(--ink-faint);
+}
+
+/* ---------- Layout helpers ---------- */
+
+.grid-2,
+.grid-3 {
+  display: grid;
+  gap: 1rem 1.25rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .grid-2,
+  .grid-3,
+  .split,
+  .effects,
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .milestone::before {
+    display: none;
+  }
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink-muted);
+}
+
+.card p strong {
+  color: var(--ink);
+}
+
+.card .label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-radius: 999px;
+  padding: 0.18rem 0.6rem;
+}
+
+.card.upcoming {
+  background: transparent;
+  border-style: dashed;
+}
+
+/* ---------- Pillars (image with centred caption) ---------- */
+
+.pillars {
+  gap: 2rem;
+}
+
+.pillar {
+  text-align: center;
+}
+
+.pillar .icon {
+  display: block;
+  width: 10rem;
+  height: 10rem;
+  margin: 0 auto 1rem;
+}
+
+.pillar h3 {
+  font-size: 1.3rem;
+}
+
+/* ---------- Lists ---------- */
+
+.list-clean {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-clean li {
+  position: relative;
+  padding: 0.65rem 0 0.65rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.list-clean li:last-child {
+  border-bottom: none;
+}
+
+.list-clean li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.25rem;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.list-clean li strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Bullets with a bold title and a one-line explanation underneath */
+.list-detailed li {
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+}
+
+.list-detailed li strong {
+  display: block;
+}
+
+.list-detailed li span {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 1rem;
+  color: var(--ink-muted);
+}
+
+.soon {
+  margin-left: 0.4rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.68rem;
+  font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.list-compact {
+  margin: 0.35rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 1rem;
+  color: var(--ink-muted);
+}
+
+.list-compact li + li {
+  margin-top: 0.3rem;
+}
+
+/* ---------- Evidence ---------- */
+
+.effects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.effect-col {
+  text-align: center;
+}
+
+.effect-col .icon {
+  display: block;
+  width: 7rem;
+  height: 7rem;
+  margin: 0 auto 0.75rem;
+}
+
+.effect-col h3 {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--harm);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--harm);
+}
+
+.effect-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.effect-col li {
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 1.15rem;
+}
+
+.effect-col li:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Coordination loop ---------- */
+
+.loop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr);
+  grid-template-rows: auto 3rem auto;
+  align-items: center;
+  justify-items: center;
+}
+
+.loop .node {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.loop .arrow {
+  font-size: 1.4rem;
+  color: var(--accent);
+}
+
+.loop .centre {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+/* ---------- Product slide ---------- */
+
+.product {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+}
+
+.product .emblem {
+  width: 20rem;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .product {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .product .emblem {
+    width: 9rem;
+  }
+}
+
+/* ---------- Product screenshot ---------- */
+
+.screenshot {
+  margin: 0;
+}
+
+.screenshot img {
+  display: block;
+  max-width: 100%;
+  max-height: 21rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(22, 24, 26, 0.08);
+}
+
+.screenshot figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+}
+
+/* ---------- Timeline ---------- */
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  padding-top: 1.75rem;
+}
+
+.milestone {
+  position: relative;
+}
+
+/* Each milestone draws the line segment up to the next one, so finished segments can be coloured. */
+.milestone::before {
+  content: "";
+  position: absolute;
+  top: calc(-1.3rem - 1px);
+  left: 0.45rem;
+  right: -1.25rem;
+  height: 2px;
+  background: var(--border);
+}
+
+.milestone:last-child::before {
+  right: 0;
+}
+
+.milestone.done::before {
+  background: var(--accent);
+}
+
+.milestone.done h3 {
+  color: var(--accent);
+}
+
+.milestone p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.milestone .dot {
+  position: absolute;
+  top: -1.75rem;
+  left: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--border);
+}
+
+.milestone.done .dot {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.milestone.current .dot {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.milestone:not(.done):not(.current) h3 {
+  color: var(--ink-faint);
+}
+
+/* ---------- Flow ---------- */
+
+.flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0.75rem;
+}
+
+.flow .step {
+  flex: 1 1 0;
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.flow .step strong {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.flow .arrow {
+  align-self: center;
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.flow-vertical {
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.flow-vertical .step {
+  flex: none;
+  padding: 0.65rem 1rem;
+}
+
+.flow-vertical .arrow {
+  font-size: 1rem;
+  line-height: 1;
+  transform: rotate(90deg);
+}
+
+@media (max-width: 900px) {
+  .flow {
+    flex-direction: column;
+  }
+
+  .flow .arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* ---------- Titled columns ---------- */
+
+.columns {
+  gap: 1.5rem 3rem;
+}
+
+.columns h3 {
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--accent);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---------- Chrome (progress + counter) ---------- */
+
+.chrome {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem var(--gutter);
+  pointer-events: none;
+}
+
+.chrome > * {
+  pointer-events: auto;
+}
+
+.progress-track {
+  flex: 1;
+  height: 2px;
+  background: var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.2s ease;
+}
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.meta .section-label {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.meta .counter {
+  font-variant-numeric: tabular-nums;
+}
+
+.hint {
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .hint {
+    display: none;
+  }
+}
+
+/* ---------- Overview ---------- */
+
+.overview {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: none;
+  flex-direction: column;
+  background: rgba(251, 250, 247, 0.98);
+  padding: 1.5rem;
+  overflow: auto;
+}
+
+.overview.open {
+  display: flex;
+}
+
+.overview header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.overview h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  max-width: none;
+}
+
+.overview button.close {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.65rem;
+}
+
+.overview-item {
+  text-align: left;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.overview-item:hover,
+.overview-item.current {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.overview-item .oi-num {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.overview-item .oi-title {
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+/* ---------- Print / PDF export (one slide per 16:9 page) ---------- */
+
+@page {
+  size: 13.333in 7.5in;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+  }
+
+  .deck {
+    width: auto;
+    height: auto;
+    overflow: visible;
+  }
+
+  .slide {
+    display: flex !important;
+    position: relative;
+    width: 13.333in;
+    height: 7.5in;
+    break-after: page;
+  }
+
+  .chrome,
+  .overview {
+    display: none !important;
+  }
+
+  .deck:has(.title-slide.active) ~ .topbar {
+    display: flex;
+  }
+}
